@@ -64,7 +64,7 @@ void SubConj(int B[], int n){
 int main(){
 	
 	int n;
-	cout << "Determine el tamaño del conjunto" << endl;
+	cout << "Determine el tamaño del conjunto (hasta ahora el conjunto solo permite elementos enteros)." << endl;
 	cin >> n;
 	int B[n];
 	for (int i=0; i<n ; i++){

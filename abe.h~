@@ -44,7 +44,7 @@ class SBT{
 
 		this->Lson=newnode;
 		this->Lson->data=ele;
-	cout << "aca" << endl;
+	
 		
 	
 	};
@@ -82,13 +82,124 @@ class SBT{
 
 	
 
-	//public:
+	public:
 
 	SBT(): root(NULL), nodes(0), height(0), current(NULL){};
 
 	~SBT(){if(root!=NULL) cutFrom(root);};
+	
+	bool Empty(Node<T> *nod){ return nod==NULL;}
+
+	void insertElem(const T ele){
+
+		Node<T> *p;
+		int cont;
+		Node<T> *newnode;
+
+		if(root==NULL){
+
+			newnode= new Node<T>;
+			newnode->data=ele;
+			root=newnode;
+			nodes=1;
+
+		}
+		else{
+
+		current=root;
+
+		while(current!=NULL){
+
+			p=current;
+			if(current->data > ele)
+			{
+				cont=1;
+				current=current->Lson;
+	
+			}
+			else
+			{
+	
+				if(current->data < ele){
+					cont=2;
+					current=current->Rson;
+	
+				}
+				else{
+	
+					return;//no puede insertar otro elemento igual
+	
+				}
+	
+			}
+				
+	
+	
+		}
+	
+		
+		newnode=new Node<T>;
+		newnode->data=ele;
+		if(cont==1)
+			p->Lson=newnode;
+		if(cont==2)
+			p->Rson=newnode;
+		nodes++;
+		if (cont>height)
+			height=cont;
+	
+		}
+		
+	
+	};
 
 	bool isEmpty(Node<T> *r){return r==NULL;};
+	
+	Node<T>* searchElem(const T ele){
+
+	if(root==NULL){
+
+			return NULL;
+
+		}
+		else{
+
+		current=root;
+
+			while(current!=NULL){
+
+				if(current->data > ele)
+				{
+
+					current=current->Lson;
+	
+				}
+				else
+				{
+	
+					if(current->data < ele){
+	
+						current=current->Rson;
+	
+					}
+					else{
+	
+						return current;//lo encontro
+	
+					}
+	
+				}
+				
+			
+	
+			}
+
+			return NULL;
+		}
+
+	
+
+	};
 	
 	int nNodesFrom(Node<T> *n){
 
@@ -391,3 +502,5 @@ class SBT{
 };
 
 #endif
+
+						
